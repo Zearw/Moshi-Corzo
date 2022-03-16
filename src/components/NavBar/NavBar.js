@@ -7,6 +7,7 @@ export default function NavBar() {
       <div className="navbar">
         <div className="logo-header">
           <img src="./ala.ico" alt="iconomarca" />
+          <h1>Moshi</h1>
         </div>
         <ul>
           <li>
