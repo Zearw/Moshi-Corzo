@@ -1,4 +1,6 @@
 import { Button } from "@mui/material";
+import CardWidget from "./CartWidget";
+import "./NavBar.css";
 
 export default function NavBar() {
   return (
@@ -11,29 +13,27 @@ export default function NavBar() {
         </div>
         <ul>
           <li>
-            <Button
-              color="secondary"
-              className="custom-btn"
-              variant="contained"
-            >
+            <Button color="primary" className="custom-btn" variant="contained">
               Home
             </Button>
           </li>
           <li>
-            <Button color="secondary" variant="contained">
+            <Button color="primary" variant="contained">
               Café
             </Button>
           </li>
           <li>
-            <Button color="secondary" variant="contained">
+            <Button color="primary" variant="contained">
               Nosotros
             </Button>
           </li>
           <li>
-            <Button color="secondary" variant="contained">
+            <Button color="primary" variant="contained">
               Contacto
             </Button>
           </li>
+
+          <CardWidget />
         </ul>
       </div>
     </header>
