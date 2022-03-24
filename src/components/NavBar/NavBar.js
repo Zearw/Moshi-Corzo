@@ -1,5 +1,5 @@
 import { Button } from "@mui/material";
-import CardWidget from "./CartWidget";
+import CartWidget from "../CartWidget/CartWidget";
 import "./NavBar.css";
 
 export default function NavBar() {
@@ -8,7 +8,7 @@ export default function NavBar() {
     <header>
       <div className="navbar">
         <div className="logo-header">
-          <img src="./ala.ico" alt="iconomarca" />
+          <img src="./assets/icons/ala.ico" alt="iconomarca" />
           <h1>Moshi</h1>
         </div>
         <ul>
@@ -33,7 +33,7 @@ export default function NavBar() {
             </Button>
           </li>
 
-          <CardWidget />
+          <CartWidget />
         </ul>
       </div>
     </header>

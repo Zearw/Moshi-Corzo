@@ -1,13 +1,13 @@
-import Card from "../Card/Card";
+import Card from "../Card/Card.js";
+import products from "../helpers/productos";
 
 export default function ListProducts() {
   return (
     <div className="container-products">
-      <Card />
-      <Card />
-      <Card />
-      <Card />
-      <Card />
+      {products.map((product) => {
+        const { id } = product;
+        return <Card product={product} key={id} />;
+      })}
     </div>
   );
 }
