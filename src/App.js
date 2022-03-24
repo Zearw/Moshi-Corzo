@@ -1,12 +1,12 @@
 import "./App.css";
 import NavBar from "./components/NavBar/NavBar";
-import ListProducts from "./components/ListProducts.js/ListProducts";
+import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 
 function App() {
   return (
     <div className="App">
       <NavBar />
-      <ListProducts />
+      <ItemListContainer title="Productos destacados" />
     </div>
   );
 }
