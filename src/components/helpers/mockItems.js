@@ -1,4 +1,4 @@
-const products = [
+const mockItems = [
   {
     id: "1",
     title: "Balanza Touch Pro",
@@ -72,4 +72,4 @@ const products = [
   },
 ];
 
-export default products;
+export default mockItems;

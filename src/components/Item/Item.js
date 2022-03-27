@@ -1,9 +1,9 @@
-import "./Card.css";
+import "./Item.css";
 import ItemCount from "../ItemCount/ItemCount";
 import onAdd from "../helpers/functions";
 
-export default function Card({ product }) {
-  const { id, title, description, price, stock } = product;
+export default function Item({ item }) {
+  const { id, title, description, price, stock } = item;
   return (
     <div className="product-item">
       <div>
