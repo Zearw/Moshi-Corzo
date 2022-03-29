@@ -18,11 +18,15 @@ export default function ItemCount({ id, stock, initial, onAdd }) {
   return (
     <>
       <div className="item-button">
-        <button onClick={restProd}>
+        <button
+          onClick={restProd}
+          disabled={countCart === initial ? true : false}
+        >
           <IndeterminateCheckBoxOutlinedIcon />
         </button>
         <p>{countCart}</p>
-        <button onClick={sumProd}>
+
+        <button onClick={sumProd} disabled={countCart == stock ? true : false}>
           <AddBoxOutlinedIcon />
         </button>
       </div>

@@ -10,7 +10,7 @@ export default function Item({ item }) {
         <h2>{title}</h2>
         <p>{description}</p>
         <p>$ {price}</p>
-        <ItemCount stock={stock} id={id} initial={0} onAdd={onAdd} />
+        <ItemCount stock={stock} id={id} initial={1} onAdd={onAdd} />
       </div>
     </div>
   );
