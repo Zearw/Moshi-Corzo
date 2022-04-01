@@ -1,0 +1,17 @@
+.container_detail {
+  padding: 60px;
+}
+.description_price {
+  margin-top: 20px;
+  font-weight: bold;
+  font-size: 26px;
+}
+
+.description_info {
+  margin-top: 20px;
+}
+
+.container_detail_image img {
+  border: 2px black solid;
+  border-radius: 18px;
+}

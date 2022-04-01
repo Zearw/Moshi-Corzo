@@ -1,11 +1,11 @@
-import ShoppingCartIcon from "@mui/icons-material/ShoppingCart";
-import { Button } from "@mui/material";
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import { IconButton } from "@mui/material";
 
 export default function CartWidget() {
   return (
-    <Button color="primary" variant="contained">
-      <ShoppingCartIcon />
+    <IconButton>
+      <ShoppingCartOutlinedIcon />
       <span>0</span>
-    </Button>
+    </IconButton>
   );
 }
