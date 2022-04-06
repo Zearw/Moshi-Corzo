@@ -1,5 +1,4 @@
 import { Button } from "@mui/material";
-import CartWidget from "../CartWidget/CartWidget";
 import "./NavBar.css";
 
 import { Link } from "react-router-dom";
@@ -12,37 +11,35 @@ export default function NavBar() {
     },
     {
       title: "Café y Té",
-      url: "/cafe_te",
+      url: "/category/cafe_te",
     },
     {
       title: "Accesorios",
-      url: "/accesorios",
+      url: "/category/accesorios",
     },
     {
       title: "Cafeteras",
-      url: "/cafeteras",
+      url: "/category/cafeteras",
+    },
+    {
+      title: "Cápsulas",
+      url: "/category/capsulas",
     },
   ];
 
   return (
     <header>
       <div className="navbar">
-        <div className="logo-header">
-          <img src="../assets/icons/ala.ico" alt="iconomarca" />
-          <h1>Moshi</h1>
-        </div>
         <ul>
-          {pages.map((page) => {
+          {pages.map((page, i) => {
             return (
-              <li>
-                <Button color="primary" size="large" className="custom-btn">
+              <li key={i}>
+                <Button size="large" className="custom-btn">
                   <Link to={page.url}>{page.title}</Link>
                 </Button>
               </li>
             );
           })}
-
-          <CartWidget />
         </ul>
       </div>
     </header>

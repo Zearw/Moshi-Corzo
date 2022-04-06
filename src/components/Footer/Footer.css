@@ -1,0 +1,21 @@
+.container_footer {
+  background-color: rgba(0, 0, 0, 0.459);
+  width: 100%;
+  margin-top: 10px;
+  display: inline-flex;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-around;
+  align-items: center;
+  color: white;
+}
+
+.logo_footer {
+  width: 109px;
+  height: auto;
+}
+
+.logo_footer img {
+  width: 100%;
+  height: 100%;
+}

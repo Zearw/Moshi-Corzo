@@ -1,0 +1,13 @@
+.container_benefits {
+  width: 100%;
+  display: inline-flex;
+  align-items: center;
+  padding: 10px;
+  background-color: rgba(128, 128, 128, 0.158);
+  margin-top: 10px;
+}
+
+.benefits {
+  text-align: center;
+  margin-right: 10px;
+}

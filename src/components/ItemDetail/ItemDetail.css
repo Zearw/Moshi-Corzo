@@ -1,5 +1,5 @@
 .container_detail {
-  padding: 60px;
+  padding: 16px;
 }
 .description_price {
   margin-top: 20px;
@@ -8,10 +8,13 @@
 }
 
 .description_info {
+  font-size: 14px;
+  line-height: 22px;
   margin-top: 20px;
 }
 
 .container_detail_image img {
+  width: 100%;
   border: 2px black solid;
   border-radius: 18px;
 }

@@ -1,4 +1,7 @@
-h2 {
+.item_title {
   text-align: center;
-  padding: 20px;
+}
+
+.loading {
+  text-align: center;
 }

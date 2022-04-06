@@ -1,10 +1,11 @@
 import "./ItemListContainer.css";
 import ItemList from "../ItemList/ItemList";
-import mockItems from "../helpers/mockItems";
+import mockItems from "../../helpers/mockItems";
 import { useEffect, useState } from "react";
-import "./ItemListContainer.css";
+import { useParams } from "react-router-dom";
 
 export default function ItemListContainer(props) {
+  const { category } = useParams({});
   const [items, setItems] = useState([]);
 
   const getItemsDelayed = new Promise((resolve, reject) => {
@@ -14,22 +15,34 @@ export default function ItemListContainer(props) {
   const getItems = async () => {
     try {
       const result = await getItemsDelayed;
-      setItems(result);
+      category ? filterCategory(result, category) : setItems(result);
     } catch (err) {
       alert(err);
     }
   };
 
   useEffect(() => {
+    setItems([]);
     getItems();
-  }, []);
+  }, [category]);
+
+  const filterCategory = (array, categ) => {
+    return array.map((it) => {
+      if (it.category === category) {
+        return setItems((items) => [...items, it]);
+      }
+      return 0;
+    });
+  };
 
   return items.length ? (
-    <>
-      <h2>{props.title}</h2>
-      <ItemList items={items} />
-    </>
+    <div>
+      <h2 className="item_title">{props.title}</h2>
+      <div>
+        <ItemList items={items} />
+      </div>
+    </div>
   ) : (
-    <h2>Cargando items</h2>
+    <h2 className="loading">Cargando items</h2>
   );
 }

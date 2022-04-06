@@ -3,6 +3,7 @@ import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import IndeterminateCheckBoxOutlinedIcon from "@mui/icons-material/IndeterminateCheckBoxOutlined";
 import IconButton from "@mui/material/IconButton";
 import { Button } from "@mui/material";
+import "./ItemCount.css";
 
 export default function ItemCount({ id, stock, initial, onAdd }) {
   const [countCart, setcountCart] = useState(initial);

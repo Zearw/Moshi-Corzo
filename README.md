@@ -1,3 +1,5 @@
+Moshi, es un ecommerce que se especializa en vender café, té y accesorios.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).

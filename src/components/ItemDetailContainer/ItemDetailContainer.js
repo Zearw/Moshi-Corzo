@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import mockItems from "../helpers/mockItems";
+import mockItems from "../../helpers/mockItems";
 
 export default function ItemDetailContainer() {
   const { id } = useParams();
@@ -12,10 +12,11 @@ export default function ItemDetailContainer() {
   }, [id]);
 
   const filterItem = (array, id) => {
-    return array.map((item) => {
-      if (item.id === id) {
-        return setItem(item);
+    return array.map((it) => {
+      if (it.id === id) {
+        return setItem(it);
       }
+      return 0;
     });
   };
 
