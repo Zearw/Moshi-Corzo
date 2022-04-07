@@ -4,9 +4,9 @@ import ShoppingBagOutlinedIcon from "@mui/icons-material/ShoppingBagOutlined";
 import IconButton from "@mui/material/IconButton";
 
 export default function Item({ item }) {
-  const { id, imageUrl, title, price } = item;
+  const { id, imageUrl, title, price, category } = item;
   return (
-    <Link to={`/item/${id}`}>
+    <Link to={`/${category}/${id}`}>
       <div className="product-item">
         <div className="product-item_img">
           <img src={imageUrl} alt={imageUrl} />

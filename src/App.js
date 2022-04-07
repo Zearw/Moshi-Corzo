@@ -8,6 +8,7 @@ import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailCont
 import Header from "./components/Header/Header";
 import StoreBenefits from "./components/StoreBenefits/StoreBenefits";
 import Footer from "./components/Footer/Footer";
+import CartPage from "./pages/CartPage";
 
 function App() {
   return (
@@ -17,8 +18,9 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="*" element={<ErrorPage />} />
-          <Route path="/category/:category" element={<Home />} />
-          <Route path="/item/:id" element={<ItemDetailContainer />} />
+          <Route path="/:category" element={<Home />} />
+          <Route path="/:category/:id" element={<ItemDetailContainer />} />
+          <Route path="/cart" element={<CartPage />} />
         </Routes>
         <StoreBenefits />
         <Footer />

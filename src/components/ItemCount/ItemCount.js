@@ -4,8 +4,9 @@ import IndeterminateCheckBoxOutlinedIcon from "@mui/icons-material/Indeterminate
 import IconButton from "@mui/material/IconButton";
 import { Button } from "@mui/material";
 import "./ItemCount.css";
+import { Link } from "react-router-dom";
 
-export default function ItemCount({ id, stock, initial, onAdd }) {
+export default function ItemCount({ id, stock, initial, action, hide }) {
   const [countCart, setcountCart] = useState(initial);
   const sumProd = () => {
     if (countCart < stock) {
@@ -20,25 +21,37 @@ export default function ItemCount({ id, stock, initial, onAdd }) {
 
   return (
     <>
-      <div className="item-button">
-        <IconButton
-          onClick={restProd}
-          disabled={countCart === initial ? true : false}
-        >
-          <IndeterminateCheckBoxOutlinedIcon />
-        </IconButton>
-        <p>{countCart}</p>
+      {hide ? (
+        <Button variant="outlined">
+          <Link to={"/cart"}>Finalizar compra</Link>
+        </Button>
+      ) : (
+        <>
+          <div className="item-button">
+            <IconButton
+              onClick={restProd}
+              disabled={countCart === initial ? true : false}
+            >
+              <IndeterminateCheckBoxOutlinedIcon />
+            </IconButton>
+            <p>{countCart}</p>
 
-        <IconButton
-          onClick={sumProd}
-          disabled={countCart === stock ? true : false}
-        >
-          <AddBoxOutlinedIcon />
-        </IconButton>
-      </div>
-      <Button variant="outlined" id={id} onClick={() => onAdd({ countCart })}>
-        Agregar al carrito
-      </Button>
+            <IconButton
+              onClick={sumProd}
+              disabled={countCart === stock ? true : false}
+            >
+              <AddBoxOutlinedIcon />
+            </IconButton>
+          </div>
+          <Button
+            variant="outlined"
+            id={id}
+            onClick={() => action({ countCart })}
+          >
+            Agregar al carrito
+          </Button>
+        </>
+      )}
     </>
   );
 }

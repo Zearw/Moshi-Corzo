@@ -1,12 +1,24 @@
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import ItemCount from "../ItemCount/ItemCount";
-import onAdd from "../../helpers/functions";
 import "./ItemDetail.css";
 import { useEffect, useState } from "react";
 export default function ItemDetail({ item }) {
   const { id, imageUrl, title, description, price, stock } = item;
   const [line, setline] = useState([]);
+  const [countItem, setcountItem] = useState(0);
+  const [hideCounter, sethideCounter] = useState(false);
+
+  function onAdd({ countCart }) {
+    if (countCart > 0) {
+      setcountItem(countCart);
+      sethideCounter(true);
+    }
+  }
+
+  useEffect(() => {
+    console.log("Item seleccionados", countItem);
+  }, [countItem]);
 
   useEffect(() => {
     if (description) {
@@ -40,7 +52,13 @@ export default function ItemDetail({ item }) {
           <div className="description_price">
             <p>$ {price}</p>
           </div>
-          <ItemCount stock={stock} id={id} initial={1} onAdd={onAdd} />
+          <ItemCount
+            id={id}
+            stock={stock}
+            initial={1}
+            action={onAdd}
+            hide={hideCounter}
+          />
           <div className="description_info">
             <div>{line}</div>
           </div>
