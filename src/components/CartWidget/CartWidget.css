@@ -1,0 +1,29 @@
+ul.MuiList-root.MuiList-padding.MuiMenu-list.css-6hp17o-MuiList-root-MuiMenu-list {
+  display: inline-block;
+  margin: 10px;
+}
+.cart_item_img {
+  width: 65px;
+  height: auto;
+}
+
+.cart_item_img img {
+  width: 100%;
+}
+
+.cart_item_title {
+  margin: 10px;
+}
+.cart_item_price {
+  margin: 5px;
+}
+
+.cart_title {
+  text-align: center;
+  margin: 5px;
+}
+
+.cart_empty {
+  text-align: center;
+  margin: 18px;
+}

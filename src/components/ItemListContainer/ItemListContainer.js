@@ -43,6 +43,8 @@ export default function ItemListContainer(props) {
       </div>
     </div>
   ) : (
-    <h2 className="loading">Cargando items</h2>
+    <div className="container_loader">
+      <span className="loader"></span>
+    </div>
   );
 }

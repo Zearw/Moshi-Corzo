@@ -10,21 +10,26 @@ import StoreBenefits from "./components/StoreBenefits/StoreBenefits";
 import Footer from "./components/Footer/Footer";
 import CartPage from "./pages/CartPage";
 
+//context
+import { CartProvider } from "./context/CartContext";
+
 function App() {
   return (
     <div className="App">
-      <BrowserRouter>
-        <Header />
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="*" element={<ErrorPage />} />
-          <Route path="/:category" element={<Home />} />
-          <Route path="/:category/:id" element={<ItemDetailContainer />} />
-          <Route path="/cart" element={<CartPage />} />
-        </Routes>
-        <StoreBenefits />
-        <Footer />
-      </BrowserRouter>
+      <CartProvider>
+        <BrowserRouter>
+          <Header />
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="*" element={<ErrorPage />} />
+            <Route path="/:category" element={<Home />} />
+            <Route path="/:category/:id" element={<ItemDetailContainer />} />
+            <Route path="/cart" element={<CartPage />} />
+          </Routes>
+          <StoreBenefits />
+          <Footer />
+        </BrowserRouter>
+      </CartProvider>
     </div>
   );
 }
