@@ -1,35 +1,49 @@
 import { createContext, useState } from "react";
 
-const CartContext = createContext();
+const CartContext = createContext([]);
 
 const CartProvider = ({ children }) => {
-  const [cartItems, setcartItem] = useState([]);
+  const [cartList, setCartList] = useState([]);
 
-  const addItemToCart = (itemToCart) => {
-    let exists;
-    if (cartItems.length) {
-      console.log("encontro algo en cartItem", cartItems);
-      exists = cartItems.find((item) => item.id === itemToCart.id);
-      !exists && setcartItem((cartItems) => [...cartItems, itemToCart]);
+  const addItemToCart = (itemToCart, stomp) => {
+    if (isInCart(itemToCart.id)) {
+      const item = cartList.find((it) => it.id === itemToCart.id);
+      const { quantity } = item;
+      let total = stomp ? itemToCart.quantity : quantity + itemToCart.quantity;
+
+      if (total <= item.stock) {
+        item.quantity = total;
+        const newCart = [...cartList];
+        setCartList(newCart);
+      } else {
+        console.log(
+          "Estas excediendo el stock. Stock disponible: ",
+          item.stock
+        );
+      }
     } else {
-      console.log("no encontro nada en cartItem", itemToCart);
-      setcartItem(itemToCart);
+      setCartList([...cartList, itemToCart]);
     }
   };
 
+  const isInCart = (id) => {
+    return cartList.some((item) => item.id === id);
+  };
+
   const removeItemToCart = (itemToCart) => {
-    setcartItem(cartItems.filter((cartItem) => cartItem.id !== itemToCart.id));
+    setCartList(cartList.filter((cartItem) => cartItem.id !== itemToCart.id));
   };
 
   const clearCart = () => {
-    setcartItem([]);
+    setCartList([]);
   };
 
   const data = {
-    cartItems,
+    cartList,
     addItemToCart,
     removeItemToCart,
     clearCart,
+    isInCart,
   };
 
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;

@@ -11,7 +11,7 @@ export default function Item({ item }) {
 
   const addItCart = (e) => {
     e.preventDefault();
-    addItemToCart(item);
+    addItemToCart({ ...item, quantity: 1 }, false);
   };
 
   return (

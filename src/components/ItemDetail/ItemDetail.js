@@ -4,27 +4,17 @@ import ItemCount from "../ItemCount/ItemCount";
 import "./ItemDetail.css";
 import { useEffect, useState, useContext } from "react";
 import CartContext from "../../context/CartContext";
-import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
 
 export default function ItemDetail({ item }) {
-  const { addItemToCart, countCart } = useContext(CartContext);
-
+  const { addItemToCart, cartList, isInCart } = useContext(CartContext);
   const { id, imageUrl, title, description, price, stock } = item;
-  console.log("entre a ItemDetail", item);
   const [line, setline] = useState([]);
   const [hideCounter, sethideCounter] = useState(false);
-  const [storedItem, setstoredItem] = useState({});
+  const [initial, setInitial] = useState(1);
 
-  function onAdd({ countCart, itemToCart }) {
-    console.log("Desde OnAdd countCart", countCart);
-    console.log("Desde OnAdd countCart", storedItem);
-    if (countCart > 0) {
-      console.log("desde onAdd", itemToCart);
-
-      addItemToCart(itemToCart, countCart);
-      sethideCounter(true);
-    }
+  function onAdd({ countCart }) {
+    addItemToCart({ ...item, quantity: countCart }, true);
+    sethideCounter(true);
   }
 
   useEffect(() => {
@@ -38,7 +28,14 @@ export default function ItemDetail({ item }) {
         });
       });
     }
-  }, [description]);
+
+    if (isInCart(id)) {
+      const cartItem = cartList.find((it) => it.id === id);
+      const { quantity } = cartItem;
+      console.log("useEffect isInCart cartItem.Quantity", cartItem.quantity);
+      setInitial(quantity);
+    }
+  }, [description, initial]);
 
   return (
     <Container>
@@ -59,26 +56,13 @@ export default function ItemDetail({ item }) {
           <div className="description_price">
             <p>$ {price}</p>
           </div>
-          <ItemCount initial={1} stock={stock} />
-
-          {hideCounter ? (
-            <Button variant="outlined">
-              <Link to={"/cart"}>Finalizar compra</Link>
-            </Button>
-          ) : (
-            <Button
-              variant="outlined"
-              id={id}
-              onClick={() => {
-                console.log("onClick", item);
-                setstoredItem(item);
-                onAdd({ countCart }, item);
-              }}
-            >
-              Agregar al carrito
-            </Button>
-          )}
-
+          <ItemCount
+            initial={initial}
+            stock={stock}
+            hide={hideCounter}
+            action={onAdd}
+            id={id}
+          />
           <div className="description_info">
             <div>{line}</div>
           </div>

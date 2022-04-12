@@ -16,7 +16,7 @@ import { Link } from "react-router-dom";
 import "./CartWidget.css";
 
 export default function CartWidget() {
-  const { cartItems, removeItemToCart, clearCart } = useContext(CartContext);
+  const { cartList, removeItemToCart, clearCart } = useContext(CartContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -27,7 +27,7 @@ export default function CartWidget() {
     setAnchorEl(null);
   };
 
-  console.log("desde cart", cartItems);
+  console.log("desde cart", cartList);
 
   return (
     <div
@@ -40,7 +40,7 @@ export default function CartWidget() {
     >
       <IconButton>
         <ShoppingCartOutlinedIcon />
-        <span>{cartItems.length}</span>
+        <span>{cartList.length}</span>
         <Menu
           anchorEl={anchorEl}
           id="account-menu"
@@ -78,8 +78,8 @@ export default function CartWidget() {
           <h3 className="cart_title">Carrito de compras</h3>
           <Divider />
           <div>
-            {cartItems.length ? (
-              cartItems.map((cartItem) => {
+            {cartList.length ? (
+              cartList.map((cartItem) => {
                 const { id, imageUrl, title, price } = cartItem;
                 return (
                   <MenuItem className="cart_item_modal" divider={true} key={id}>
