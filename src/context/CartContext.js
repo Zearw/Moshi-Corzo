@@ -38,12 +38,24 @@ const CartProvider = ({ children }) => {
     setCartList([]);
   };
 
+  const sumTotal = () => {
+    return cartList.reduce(
+      (acc, it) => (acc = acc + it.quantity * it.price),
+      0
+    );
+  };
+
+  const cant = () => {
+    return cartList.reduce((acum, it) => (acum += it.quantity), 0);
+  };
   const data = {
     cartList,
     addItemToCart,
     removeItemToCart,
     clearCart,
     isInCart,
+    sumTotal,
+    cant,
   };
 
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;

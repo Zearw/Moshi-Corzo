@@ -1,0 +1,26 @@
+.cart_title_resumen {
+  margin-top: 15px;
+  text-align: center;
+}
+
+.cart_subtotal {
+  display: inline-flex;
+  justify-content: space-around;
+  margin: 15px 0px;
+}
+
+.cart_subtotal_price {
+  margin-left: 20px;
+}
+
+.MuiContainer-root.MuiContainer-maxWidthLg.css-1oqqzyl-MuiContainer-root {
+  display: grid;
+}
+.footer_cart {
+  background-color: #80808029;
+  display: inline-grid;
+  align-items: center;
+  justify-items: center;
+  border-radius: 11px;
+  margin-top: 10px;
+}

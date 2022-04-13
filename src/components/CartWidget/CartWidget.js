@@ -16,7 +16,8 @@ import { Link } from "react-router-dom";
 import "./CartWidget.css";
 
 export default function CartWidget() {
-  const { cartList, removeItemToCart, clearCart } = useContext(CartContext);
+  const { cartList, removeItemToCart, clearCart, cant } =
+    useContext(CartContext);
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
   const handleClick = (event) => {
@@ -27,7 +28,8 @@ export default function CartWidget() {
     setAnchorEl(null);
   };
 
-  console.log("desde cart", cartList);
+  const cantTotal = cant();
+  console.log("totalitems", cantTotal);
 
   return (
     <div
@@ -40,7 +42,7 @@ export default function CartWidget() {
     >
       <IconButton>
         <ShoppingCartOutlinedIcon />
-        <span>{cartList.length}</span>
+        <span>{cartList.length >= 1 && cant()}</span>
         <Menu
           anchorEl={anchorEl}
           id="account-menu"
@@ -105,14 +107,23 @@ export default function CartWidget() {
               <h3 className="cart_empty">No hay nada por aquí</h3>
             )}
           </div>
-          <div className="footer_modal_cart">
-            <Button className="btn-custom">
-              <Link to="/cart">Iniciar la compra</Link>
-            </Button>
-            <Button className="btn-custom" onClick={clearCart}>
-              <span>Vaciar Carrito</span>
-            </Button>
-          </div>
+
+          {cartList.length ? (
+            <div className="footer_modal_cart">
+              <Button className="btn-custom">
+                <Link to="/cart">Iniciar la compra</Link>
+              </Button>
+              <Button className="btn-custom" onClick={clearCart}>
+                <span>Vaciar Carrito</span>
+              </Button>
+            </div>
+          ) : (
+            <div>
+              <Button>
+                <Link to={"/"}>Seguí Comprando</Link>
+              </Button>
+            </div>
+          )}
         </Menu>
       </IconButton>
     </div>
