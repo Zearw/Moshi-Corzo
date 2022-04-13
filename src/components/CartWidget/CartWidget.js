@@ -28,9 +28,6 @@ export default function CartWidget() {
     setAnchorEl(null);
   };
 
-  const cantTotal = cant();
-  console.log("totalitems", cantTotal);
-
   return (
     <div
       onClick={handleClick}

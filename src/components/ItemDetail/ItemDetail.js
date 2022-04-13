@@ -32,7 +32,6 @@ export default function ItemDetail({ item }) {
     if (isInCart(id)) {
       const cartItem = cartList.find((it) => it.id === id);
       const { quantity } = cartItem;
-      console.log("useEffect isInCart cartItem.Quantity", cartItem.quantity);
       setInitial(quantity);
     }
   }, [description, initial]);
