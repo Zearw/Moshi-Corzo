@@ -1,24 +1,29 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import ItemDetail from "../ItemDetail/ItemDetail";
-import mockItems from "../../helpers/mockItems";
+import { doc, getDoc } from "firebase/firestore";
+import dataBase from "../../helpers/firebase";
 
 export default function ItemDetailContainer() {
   const { id } = useParams();
   const [item, setItem] = useState({});
 
-  useEffect(() => {
-    filterItem(mockItems, id);
-  }, [id]);
+  const getItem = async () => {
+    const itRef = doc(dataBase, "mockItems", id);
+    const itSnap = await getDoc(itRef);
 
-  const filterItem = (array, id) => {
-    return array.map((it) => {
-      if (it.id === id) {
-        return setItem(it);
-      }
-      return 0;
-    });
+    if (itSnap.exists()) {
+      let item = itSnap.data();
+      item.id = itSnap.id;
+      setItem(item);
+    } else {
+      console.log("No existe el producto");
+    }
   };
+
+  useEffect(() => {
+    getItem();
+  }, [id]);
 
   return <ItemDetail item={item} />;
 }

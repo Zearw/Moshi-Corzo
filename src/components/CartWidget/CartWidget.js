@@ -83,7 +83,10 @@ export default function CartWidget() {
                 return (
                   <MenuItem className="cart_item_modal" divider={true} key={id}>
                     <div className="cart_item_img">
-                      <img src={`${imageUrl}`} alt={`${imageUrl}`} />
+                      <img
+                        src={`../assets/images/${imageUrl}`}
+                        alt={`${imageUrl}`}
+                      />
                     </div>
                     <div className="cart_item_title">
                       <p>{title}</p>

@@ -22,8 +22,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="*" element={<ErrorPage />} />
-            <Route path="/:category" element={<Home />} />
-            <Route path="/:category/:id" element={<ItemDetailContainer />} />
+            <Route path="/category/:category" element={<Home />} />
+            <Route path="/item/:id" element={<ItemDetailContainer />} />
             <Route path="/cart" element={<CartPage />} />
           </Routes>
           <StoreBenefits />

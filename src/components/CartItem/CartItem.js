@@ -24,7 +24,7 @@ const CartItem = ({ cartIt }) => {
       <div className="container_cart_item" id={id}>
         <MenuItem className="cart_item" divider={true}>
           <div className="cart_item_img">
-            <img src={imageUrl} alt={imageUrl} />
+            <img src={`../assets/images/${imageUrl}`} alt={imageUrl} />
           </div>
           <div className="cart_item_title">
             <p>

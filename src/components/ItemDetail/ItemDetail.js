@@ -46,7 +46,7 @@ export default function ItemDetail({ item }) {
         className="container_detail"
       >
         <Grid item xs={12} md={6} className="container_detail_image">
-          <img src={imageUrl} alt={imageUrl} />
+          <img src={`../assets/images/${imageUrl}`} alt={imageUrl} />
         </Grid>
         <Grid item xs={12} md={6} className="container_detail_description">
           <div className="description_title">

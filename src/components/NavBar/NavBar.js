@@ -11,19 +11,19 @@ export default function NavBar() {
     },
     {
       title: "Café y Té",
-      url: "/cafe_te",
+      url: "/category/cafe_te",
     },
     {
       title: "Accesorios",
-      url: "/accesorios",
+      url: "/category/accesorios",
     },
     {
       title: "Cafeteras",
-      url: "/cafeteras",
+      url: "/category/cafeteras",
     },
     {
       title: "Cápsulas",
-      url: "/capsulas",
+      url: "/category/capsulas",
     },
   ];
 

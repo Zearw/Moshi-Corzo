@@ -6,7 +6,7 @@ import CartContext from "../../context/CartContext";
 import { useContext } from "react";
 
 export default function Item({ item }) {
-  const { id, imageUrl, title, price, category } = item;
+  const { id, imageUrl, title, price } = item;
   const { addItemToCart } = useContext(CartContext);
 
   const addItCart = (e) => {
@@ -15,10 +15,10 @@ export default function Item({ item }) {
   };
 
   return (
-    <Link to={`/${category}/${id}`}>
+    <Link to={`/item/${id}`}>
       <div className="product-item">
         <div className="product-item_img">
-          <img src={imageUrl} alt={imageUrl} />
+          <img src={`../assets/images/${imageUrl}`} alt={imageUrl} />
         </div>
         <div>
           <h2>{title}</h2>

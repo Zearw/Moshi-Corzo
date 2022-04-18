@@ -1,29 +1,30 @@
 import "./ItemListContainer.css";
 import ItemList from "../ItemList/ItemList";
-import mockItems from "../../helpers/mockItems";
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import dataBase from "../../helpers/firebase";
+import { collection, getDocs } from "firebase/firestore";
 
 export default function ItemListContainer(props) {
   const { category } = useParams({});
   const [items, setItems] = useState([]);
 
-  const getItemsDelayed = new Promise((resolve, reject) => {
-    setTimeout(() => resolve(mockItems), 2000);
-  });
-
   const getItems = async () => {
-    try {
-      const result = await getItemsDelayed;
-      category ? filterCategory(result, category) : setItems(result);
-    } catch (err) {
-      alert(err);
-    }
+    const itemCollection = collection(dataBase, "mockItems");
+    const itemsSnapshot = await getDocs(itemCollection);
+    const itemList = itemsSnapshot.docs.map((doc) => {
+      let item = doc.data();
+      item.id = doc.id;
+      return item;
+    });
+    return itemList;
   };
 
   useEffect(() => {
     setItems([]);
-    getItems();
+    getItems().then((items) => {
+      category ? filterCategory(items, category) : setItems(items);
+    });
   }, [category]);
 
   const filterCategory = (array, categ) => {
