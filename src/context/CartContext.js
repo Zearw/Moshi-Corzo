@@ -4,6 +4,11 @@ const CartContext = createContext([]);
 
 const CartProvider = ({ children }) => {
   const [cartList, setCartList] = useState([]);
+  const [dataForm, setDataForm] = useState({
+    name: "",
+    phone: "",
+    email: "",
+  });
 
   const addItemToCart = (itemToCart, stomp) => {
     if (isInCart(itemToCart.id)) {
@@ -50,12 +55,14 @@ const CartProvider = ({ children }) => {
   };
   const data = {
     cartList,
+    dataForm,
     addItemToCart,
     removeItemToCart,
     clearCart,
     isInCart,
     sumTotal,
     cant,
+    setDataForm,
   };
 
   return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
