@@ -16,7 +16,7 @@ const AboutUs = () => {
       <p>
         Empezamos poco a poco, incurcionando en el mundo del café. Comenzamos
         vendiendo accesorios y jarras de forma individual, hasta que pudimos
-        abrir nuestro querida pagina web en junio del 2018.
+        abrir nuestra querida pagina web en junio del 2018.
       </p>
       <p>
         A partir de ese momento, Moshi café fue ampliando el equipo que nos
