@@ -1,12 +1,20 @@
-import { useParams } from "react-router-dom";
+import "./ItemDetailContainer.css";
 import { useEffect, useState } from "react";
-import ItemDetail from "../ItemDetail/ItemDetail";
+//firebase
 import { doc, getDoc } from "firebase/firestore";
 import dataBase from "../../helpers/firebase";
+//navigation
+import { useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
+//components
+import ItemDetail from "../ItemDetail/ItemDetail";
 
 export default function ItemDetailContainer() {
-  const { id } = useParams();
+  const [loading, setLoading] = useState(true);
   const [item, setItem] = useState({});
+  //Const Navigation
+  const { id } = useParams();
+  const navigate = useNavigate();
 
   const getItem = async () => {
     const itRef = doc(dataBase, "mockItems", id);
@@ -16,8 +24,9 @@ export default function ItemDetailContainer() {
       let item = itSnap.data();
       item.id = itSnap.id;
       setItem(item);
+      setLoading(false);
     } else {
-      console.log("No existe el producto");
+      navigate("/error");
     }
   };
 
@@ -25,5 +34,11 @@ export default function ItemDetailContainer() {
     getItem();
   }, [id]);
 
-  return <ItemDetail item={item} />;
+  return loading ? (
+    <div className="container_loader">
+      <span className="loader"></span>
+    </div>
+  ) : (
+    <ItemDetail item={item} />
+  );
 }

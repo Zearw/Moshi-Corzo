@@ -1,12 +1,15 @@
-import MenuItem from "@mui/material/MenuItem";
+import "./CartItem.css";
+//context
+import CartContext from "../../context/CartContext";
+import { useContext } from "react";
+//icons
 import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
-import { Button } from "@mui/material";
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import IndeterminateCheckBoxOutlinedIcon from "@mui/icons-material/IndeterminateCheckBoxOutlined";
+//components
+import { Button } from "@mui/material";
+import MenuItem from "@mui/material/MenuItem";
 import IconButton from "@mui/material/IconButton";
-import "./CartItem.css";
-import { useContext } from "react";
-import CartContext from "../../context/CartContext";
 
 const CartItem = ({ cartIt }) => {
   const { id, imageUrl, title, price, quantity, stock } = cartIt;

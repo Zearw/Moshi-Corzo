@@ -1,6 +1,6 @@
-import NavBar from "../NavBar/NavBar";
-import SearchBox from "../SearchBox/SearchBox";
 import "./Header.css";
+//components
+import NavBar from "../NavBar/NavBar";
 
 const Header = () => {
   return (
@@ -10,7 +10,6 @@ const Header = () => {
           <strong>Envíos gratis</strong> a partir desde $5000
         </p>
       </div>
-      <SearchBox />
       <NavBar />
     </div>
   );

@@ -1,9 +1,3 @@
 .cart_empty {
   text-align: center;
 }
-
-.container_cart_items {
-  display: grid;
-  justify-content: center;
-  justify-items: center;
-}

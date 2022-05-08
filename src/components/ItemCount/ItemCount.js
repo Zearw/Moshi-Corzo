@@ -1,27 +1,30 @@
+import "./ItemCount.css";
 import React, { useEffect, useState } from "react";
+//navigation
+import { Link } from "react-router-dom";
+//icons
 import AddBoxOutlinedIcon from "@mui/icons-material/AddBoxOutlined";
 import IndeterminateCheckBoxOutlinedIcon from "@mui/icons-material/IndeterminateCheckBoxOutlined";
+//components
 import IconButton from "@mui/material/IconButton";
-import "./ItemCount.css";
 import { Button } from "@mui/material";
-import { Link } from "react-router-dom";
 
 export default function ItemCount({ stock, initial, hide, action, id }) {
-  const [countCart, setcountCart] = useState(initial);
+  const [countCart, setCountCart] = useState(initial);
 
   const sumProd = () => {
     if (countCart < stock) {
-      setcountCart(countCart + 1);
+      setCountCart(countCart + 1);
     }
   };
   const restProd = () => {
     if (countCart > 0) {
-      setcountCart(countCart - 1);
+      setCountCart(countCart - 1);
     }
   };
 
   useEffect(() => {
-    setcountCart(initial);
+    setCountCart(initial);
   }, [initial]);
 
   return (

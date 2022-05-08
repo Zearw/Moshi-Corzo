@@ -1,12 +1,14 @@
+import "./CartContainer.css";
+//components
 import CartList from "../CartList/CartList";
-import { Container } from "@mui/material";
 import CartFooter from "../CartFooter/CartFooter";
+
 const CartContainer = () => {
   return (
-    <Container>
+    <div className="container_cart">
       <CartList />
       <CartFooter />
-    </Container>
+    </div>
   );
 };
 

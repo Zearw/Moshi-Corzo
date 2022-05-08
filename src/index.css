@@ -19,4 +19,12 @@ button {
 
 body {
   background-color: #fafafa;
+  position: relative;
+  min-width: 100vh;
+  padding-bottom: 13em;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }

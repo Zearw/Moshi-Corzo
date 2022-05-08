@@ -27,3 +27,22 @@ ul.MuiList-root.MuiList-padding.MuiMenu-list.css-6hp17o-MuiList-root-MuiMenu-lis
   text-align: center;
   margin: 18px;
 }
+
+.MuiAccordionSummary-content.MuiAccordionSummary-contentGutters.css-o4b71y-MuiAccordionSummary-content {
+  font-size: larger;
+  padding: 10px;
+  border-radius: 50%;
+}
+
+.container_itemCart {
+  display: inline-grid;
+  justify-items: center;
+}
+
+.cart_item {
+  width: 100%;
+}
+
+button.MuiButton-root.MuiButton-text.MuiButton-textPrimary.MuiButton-sizeMedium.MuiButton-textSizeMedium.MuiButtonBase-root.btn-custom.css-1e6y48t-MuiButtonBase-root-MuiButton-root {
+  color: black;
+}

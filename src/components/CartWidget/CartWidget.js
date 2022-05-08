@@ -1,19 +1,18 @@
-//icons
-import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
-import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
-//components
-import { IconButton } from "@mui/material";
-import Menu from "@mui/material/Menu";
-import MenuItem from "@mui/material/MenuItem";
-import Divider from "@mui/material/Divider";
-import { Button } from "@mui/material";
+import "./CartWidget.css";
 import { useContext, useState } from "react";
 //context
 import CartContext from "../../context/CartContext";
 //navigation
 import { Link } from "react-router-dom";
-//css
-import "./CartWidget.css";
+//icons
+import ShoppingCartOutlinedIcon from "@mui/icons-material/ShoppingCartOutlined";
+import ClearOutlinedIcon from "@mui/icons-material/ClearOutlined";
+//components
+import Menu from "@mui/material/Menu";
+import MenuItem from "@mui/material/MenuItem";
+import Divider from "@mui/material/Divider";
+import { Button } from "@mui/material";
+import AccordionSummary from "@mui/material/AccordionSummary";
 
 export default function CartWidget() {
   const { cartList, removeItemToCart, clearCart, cant } =
@@ -37,7 +36,7 @@ export default function CartWidget() {
       aria-haspopup="true"
       aria-expanded={open ? "true" : undefined}
     >
-      <IconButton>
+      <AccordionSummary>
         <ShoppingCartOutlinedIcon />
         <span>{cartList.length >= 1 && cant()}</span>
         <Menu
@@ -45,6 +44,7 @@ export default function CartWidget() {
           id="account-menu"
           open={open}
           onClose={handleClose}
+          onClick={handleClose}
           PaperProps={{
             elevation: 0,
             sx: {
@@ -78,10 +78,15 @@ export default function CartWidget() {
           <Divider />
           <div>
             {cartList.length ? (
-              cartList.map((cartItem) => {
+              cartList.map((cartItem, i) => {
                 const { id, imageUrl, title, price } = cartItem;
                 return (
-                  <MenuItem className="cart_item_modal" divider={true} key={id}>
+                  <MenuItem
+                    className="cart_item"
+                    divider={true}
+                    key={i}
+                    id={id}
+                  >
                     <div className="cart_item_img">
                       <img
                         src={`../assets/images/${imageUrl}`}
@@ -125,7 +130,7 @@ export default function CartWidget() {
             </div>
           )}
         </Menu>
-      </IconButton>
+      </AccordionSummary>
     </div>
   );
 }

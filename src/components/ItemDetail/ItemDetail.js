@@ -1,29 +1,31 @@
+import "./ItemDetail.css";
+import { useEffect, useState, useContext } from "react";
+//context
+import CartContext from "../../context/CartContext";
+//components
 import Grid from "@mui/material/Grid";
 import Container from "@mui/material/Container";
 import ItemCount from "../ItemCount/ItemCount";
-import "./ItemDetail.css";
-import { useEffect, useState, useContext } from "react";
-import CartContext from "../../context/CartContext";
 
 export default function ItemDetail({ item }) {
   const { addItemToCart, cartList, isInCart } = useContext(CartContext);
   const { id, imageUrl, title, description, price, stock } = item;
-  const [line, setline] = useState([]);
-  const [hideCounter, sethideCounter] = useState(false);
+  const [line, setLine] = useState([]);
+  const [hideCounter, setHideCounter] = useState(false);
   const [initial, setInitial] = useState(1);
 
   function onAdd({ countCart }) {
     addItemToCart({ ...item, quantity: countCart }, true);
-    sethideCounter(true);
+    setHideCounter(true);
   }
 
   useEffect(() => {
     if (description) {
-      setline((line) => {
+      setLine((line) => {
         return [];
       });
       description.map((text, i) => {
-        return setline((line) => {
+        return setLine((line) => {
           return [...line, <p key={i}>{text}</p>];
         });
       });

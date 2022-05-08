@@ -1,0 +1,14 @@
+input {
+  display: flex;
+  margin-top: 12px;
+  block-size: 36px;
+  width: 100%;
+}
+
+form {
+  display: inline-grid;
+}
+
+button.MuiButton-root.MuiButton-outlined.MuiButton-outlinedPrimary.MuiButton-sizeMedium.MuiButton-outlinedSizeMedium.MuiButtonBase-root.css-1rwt2y5-MuiButtonBase-root-MuiButton-root {
+  color: black;
+}

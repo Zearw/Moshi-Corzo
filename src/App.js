@@ -1,6 +1,7 @@
 import "./App.css";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
-
+//context
+import { CartProvider } from "./context/CartContext";
 //components
 import ErrorPage from "./pages/ErrorPage";
 import Home from "../src/pages/Home";
@@ -9,9 +10,8 @@ import Header from "./components/Header/Header";
 import StoreBenefits from "./components/StoreBenefits/StoreBenefits";
 import Footer from "./components/Footer/Footer";
 import CartPage from "./pages/CartPage";
-
-//context
-import { CartProvider } from "./context/CartContext";
+import AboutUs from "./pages/AboutUs";
+import QuestionPage from "./pages/QuestionPage";
 
 function App() {
   return (
@@ -25,6 +25,8 @@ function App() {
             <Route path="/category/:category" element={<Home />} />
             <Route path="/item/:id" element={<ItemDetailContainer />} />
             <Route path="/cart" element={<CartPage />} />
+            <Route path="/nosotros" element={<AboutUs />} />
+            <Route path="/preguntas-frecuentes" element={<QuestionPage />} />
           </Routes>
           <StoreBenefits />
           <Footer />

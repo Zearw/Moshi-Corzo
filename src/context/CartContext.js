@@ -1,33 +1,51 @@
-import { createContext, useState } from "react";
+import { createContext, useState, forwardRef } from "react";
+//components
+import Stack from "@mui/material/Stack";
+import Snackbar from "@mui/material/Snackbar";
+import MuiAlert from "@mui/material/Alert";
 
 const CartContext = createContext([]);
 
 const CartProvider = ({ children }) => {
-  const [cartList, setCartList] = useState([]);
+  //Estados Alertas
+  const [openAlertError, setOpenAlertError] = useState(false);
+  const [openAlertSuccess, setOpenAlertSuccess] = useState(false);
+  //Carrito
+  const [cartList, setCartList] = useState(
+    JSON.parse(localStorage.getItem("cartItem")) || []
+  );
+
+  //Estados del Form
   const [dataForm, setDataForm] = useState({
     name: "",
     phone: "",
     email: "",
+    email2: "",
   });
 
+  //Funciones carrito
   const addItemToCart = (itemToCart, stomp) => {
     if (isInCart(itemToCart.id)) {
       const item = cartList.find((it) => it.id === itemToCart.id);
-      const { quantity } = item;
+      const { quantity, stock } = item;
       let total = stomp ? itemToCart.quantity : quantity + itemToCart.quantity;
 
-      if (total <= item.stock) {
+      if (total <= stock) {
         item.quantity = total;
         const newCart = [...cartList];
+        setOpenAlertSuccess(true);
         setCartList(newCart);
+        localStorage.setItem("cartItem", JSON.stringify(newCart));
       } else {
-        console.log(
-          "Estas excediendo el stock. Stock disponible: ",
-          item.stock
-        );
+        setOpenAlertError(true);
       }
     } else {
+      setOpenAlertSuccess(true);
       setCartList([...cartList, itemToCart]);
+      localStorage.setItem(
+        "cartItem",
+        JSON.stringify([...cartList, itemToCart])
+      );
     }
   };
 
@@ -36,10 +54,13 @@ const CartProvider = ({ children }) => {
   };
 
   const removeItemToCart = (itemToCart) => {
-    setCartList(cartList.filter((cartItem) => cartItem.id !== itemToCart.id));
+    let temp = cartList.filter((cartItem) => cartItem.id !== itemToCart.id);
+    setCartList(temp);
+    localStorage.setItem("cartItem", JSON.stringify([temp]));
   };
 
   const clearCart = () => {
+    localStorage.clear();
     setCartList([]);
   };
 
@@ -53,6 +74,26 @@ const CartProvider = ({ children }) => {
   const cant = () => {
     return cartList.reduce((acum, it) => (acum += it.quantity), 0);
   };
+
+  // Alertas
+  const Alert = forwardRef(function Alert(props, ref) {
+    return <MuiAlert elevation={6} ref={ref} variant="filled" {...props} />;
+  });
+
+  const closeAlertError = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenAlertError(false);
+  };
+  const closeAlertSuccess = (event, reason) => {
+    if (reason === "clickaway") {
+      return;
+    }
+    setOpenAlertSuccess(false);
+  };
+
+  //Value del CartContext
   const data = {
     cartList,
     dataForm,
@@ -65,7 +106,41 @@ const CartProvider = ({ children }) => {
     setDataForm,
   };
 
-  return <CartContext.Provider value={data}>{children}</CartContext.Provider>;
+  return (
+    <CartContext.Provider value={data}>
+      {children}
+      <Stack spacing={2} sx={{ width: "100%" }}>
+        <Snackbar
+          open={openAlertError}
+          autoHideDuration={1500}
+          onClose={closeAlertError}
+        >
+          <Alert
+            onClose={closeAlertError}
+            severity="error"
+            sx={{ width: "100%" }}
+          >
+            Estas excediendo el stock disponible.
+          </Alert>
+        </Snackbar>
+      </Stack>
+      <Stack spacing={2} sx={{ width: "100%" }}>
+        <Snackbar
+          open={openAlertSuccess}
+          autoHideDuration={1000}
+          onClose={closeAlertSuccess}
+        >
+          <Alert
+            onClose={closeAlertSuccess}
+            severity="success"
+            sx={{ width: "100%" }}
+          >
+            Se agrego un articulo al carrito!
+          </Alert>
+        </Snackbar>
+      </Stack>
+    </CartContext.Provider>
+  );
 };
 
 export { CartProvider };
