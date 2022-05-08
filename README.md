@@ -12,10 +12,11 @@ Se puede comprar desde cafeteras profesionales hasta vajilla para el uso en casa
 ## ¿Como instalar el proyecto?
 
 **1.** Desde el botón Code se puede descargar el proyecto como ZIP o clonar el repositorio.
-**2** Una vez dentro de la carpeta del proyecto, ya descargado, instalar las dependencias utilizando el comando:
+
+**2.** Una vez dentro de la carpeta del proyecto, ya descargado, instalar las dependencias utilizando el comando:
 
     npm i
 
-**3** Cuando haya terminado la instalación, levantar el servidor local para correr el proyecto con el siguiente comando:
+**3.** Cuando haya terminado la instalación, levantar el servidor local para correr el proyecto con el siguiente comando:
 
     npm start
